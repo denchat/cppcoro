@@ -160,7 +160,13 @@ target_include_directories(cppcoro PUBLIC
 target_compile_features(cppcoro PUBLIC cxx_std_20)
 
 find_package(CppcoroCoroutines REQUIRED)
-target_link_libraries(cppcoro PUBLIC cppcoro::coroutines)
+
+if (WIN32)
+    set(win32libs Synchronization MsWSock Ws2_32)
+else()
+    set(win32libs)
+endif()
+target_link_libraries(cppcoro PUBLIC cppcoro::coroutines ${win32libs})
 
 install(TARGETS cppcoro EXPORT cppcoroTargets
 	LIBRARY DESTINATION lib
