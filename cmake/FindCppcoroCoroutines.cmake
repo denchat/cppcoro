@@ -10,13 +10,13 @@ endif()
 check_cxx_compiler_flag("${Coroutines_SUPPORTS_MS_FLAG_STRING}" Coroutines_SUPPORTS_MS_FLAG)
 if(DEFINED __cpp_coroutines)
     if( (DEFINED __clang__) AND (__cpp_coroutines GREATER_EQUAL 201903) ) # https://reviews.llvm.org/D33536
-	# TODO: Add more compilers' __cpp_coroutines version
-	#  OR ( (DEFINED __GNU__) AND (NOT DEFINED __clang__)  AND (__cpp_coroutines GREATER_EQUAL ??????) )
-	#  OR ( (DEFINED _MSC_VER) AND (__cpp_coroutines GREATER_EQUAL ??????) )
+        # TODO: Add more compilers' __cpp_coroutines version
+        #  OR ( (DEFINED __GNU__) AND (NOT DEFINED __clang__)  AND (__cpp_coroutines GREATER_EQUAL ??????) )
+        #  OR ( (DEFINED _MSC_VER) AND (__cpp_coroutines GREATER_EQUAL ??????) )
         set(Coroutines_SUPPORTS_GNU_FLAG_STRING -std=c++2a)
-	endif()    
+	endif()
 endif()
-if(NOT DEFINED Coroutines_SUPPORTS_GNU_FLAG_STRING)
+if(NOT Coroutines_SUPPORTS_GNU_FLAG_STRING)
     set(Coroutines_SUPPORTS_GNU_FLAG_STRING -fcoroutines-ts)
 endif()
 check_cxx_compiler_flag("${Coroutines_SUPPORTS_GNU_FLAG_STRING}" Coroutines_SUPPORTS_GNU_FLAG)
