@@ -148,8 +148,8 @@ if(WIN32)
     // Platform detection in CMake 
     // https://stackoverflow.com/a/40217291/6370128
     macro(get_WIN32_WINNT version)
-        if (CMAKE_SYSTEM_VERSION)
-            set(ver ${CMAKE_SYSTEM_VERSION})
+        if (CMAKE_HOST_SYSTEM_VERSION)
+            set(ver ${CMAKE_HOST_SYSTEM_VERSION})
             string(REGEX MATCH "^([0-9]+).([0-9])" ver ${ver})
             string(REGEX MATCH "^([0-9]+)" verMajor ${ver})
             # Check for Windows 10, b/c we'll need to convert to hex 'A'.
@@ -162,7 +162,7 @@ if(WIN32)
             # Prepend each digit with a zero.
             string(REGEX REPLACE "([0-9A-Z])" "0\\1" ver ${ver})
             set(${version} "0x${ver}")
-        endif(CMAKE_SYSTEM_VERSION)
+        endif(CMAKE_HOST_SYSTEM_VERSION)
     endmacro(get_WIN32_WINNT)
 
     get_WIN32_WINNT(ver)
