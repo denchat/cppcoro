@@ -145,7 +145,7 @@ if(WIN32)
     )
     list(APPEND sources ${win32Sources})
 
-    // Platform detection in CMake
+    // Platform detection in CMake 
     // https://stackoverflow.com/a/40217291/6370128
     macro(get_WIN32_WINNT version)
         if (CMAKE_SYSTEM_VERSION)
